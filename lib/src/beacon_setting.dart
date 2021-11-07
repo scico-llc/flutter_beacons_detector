@@ -1,8 +1,8 @@
 class BeaconSetting {
-  final int? androidFgScanPeriod;
-  final int? androidFgScanBetween;
-  final int? androidBgScanPeriod;
-  final int? androidBgScanBetween;
+  final int androidFgScanPeriod;
+  final int androidFgScanBetween;
+  final int androidBgScanPeriod;
+  final int androidBgScanBetween;
   final int iosFgScanPeriod;
   final int iosFgScanBetween;
   final int iosBgScanPeriod;
@@ -47,19 +47,12 @@ class BeaconSetting {
     );
   }
 
-  Map<String, int>? toAndroidSetting() {
-    if (androidFgScanPeriod == null ||
-        androidFgScanBetween == null ||
-        androidBgScanPeriod == null ||
-        androidBgScanBetween == null) {
-      return null;
-    }
-
+  Map<String, int> toAndroidSetting() {
     return {
-      'FgScanPeriod': androidFgScanPeriod!,
-      'FgScanBetween': androidFgScanBetween!,
-      'BgScanPeriod': androidBgScanPeriod!,
-      'BgScanBetween': androidBgScanBetween!,
+      'FgScanPeriod': androidFgScanPeriod,
+      'FgScanBetween': androidFgScanBetween,
+      'BgScanPeriod': androidBgScanPeriod,
+      'BgScanBetween': androidBgScanBetween,
     };
   }
 

@@ -30,10 +30,6 @@ class BeconManager {
       throw UnsupportedError('this plugin support only ios and android');
     }
 
-    if (_settingData != null) {
-      args.add(_settingData);
-    }
-
     await _foregroundChannel.invokeMethod('BeaconsPlugin.initialize', args);
   }
 
@@ -55,6 +51,11 @@ class BeconManager {
     if (regions.isEmpty) {
       throw UnsupportedError(
         'argument regions needs to contain at least one region',
+      );
+    }
+    if (regions.length > 20 && Platform.isIOS) {
+      throw UnsupportedError(
+        'iOS support register reagions <= 20.',
       );
     }
     final CallbackHandle? callbackHandle =
@@ -80,8 +81,8 @@ class BeconManager {
   //   await _channel.invokeMethod('BeaconsPlugin.addRegions', args);
   // }
 
-  static Future<void> clearRegions() async =>
-      _foregroundChannel.invokeMethod('BeaconsPlugin.clearRegions');
+  // static Future<void> clearRegions() async =>
+  //     _foregroundChannel.invokeMethod('BeaconsPlugin.clearRegions');
 
   static Future<List<BeaconRegion>> getRegisteredRegions() async =>
       (await _foregroundChannel

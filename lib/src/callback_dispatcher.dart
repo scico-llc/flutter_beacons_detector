@@ -21,5 +21,5 @@ void callbackDispatcher() {
 
     callback!(beacon);
   });
-  _backgroundChannel.invokeMethod('initialized');
+  _backgroundChannel.invokeMethod('BeaconService.initialized');
 }
